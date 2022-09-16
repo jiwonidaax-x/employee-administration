@@ -1,5 +1,4 @@
 var file = require("fs");
-const { resolve } = require("path");
 var employees = [];
 var departments = [];
 
@@ -49,13 +48,16 @@ getManagers = () => {
   })
 };
 
-
 getDepartments = () => {
-  return new Promise = ((resolve, reject => {
-
-
+  return new Promise = ((resolve, reject) => {
+    if (departments.length == 0) {
+      reject("no results returned");
+    }
+    else {
+      resolve(departments);
+    }
   })
- };
+};
 
 
 
