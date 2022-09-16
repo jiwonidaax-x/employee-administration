@@ -1,9 +1,10 @@
+
 var file = require("fs");
 var employees = [];
 var departments = [];
 
 exports.initialize = () => {
-  return new Promise(function(resolve, reject) {
+  return new Promise = (function(resolve, reject) {
     file.readFile('./data/employees.json', (err, data) => {
       if (err) {
         reject("unable to read file");
@@ -42,7 +43,7 @@ exports.getManagers = () => {
       reject("no results returned");
     }
     else {
-      employees.forEach(e => newArr.push((e.isManager === true)));
+      employees.forEach(e => newArr.push(e.isManager == true));
       resolve(newArr);
     }
   })
@@ -58,21 +59,6 @@ exports.getDepartments = () => {
     }
   })
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
