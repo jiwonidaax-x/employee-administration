@@ -21,15 +21,15 @@ app.get('/employees', (req, res) => {
 });
 
 app.get('/managers', (req, res) => {
-  dataservice.getDepartments().then((data) => {
+  dataservice.getManagers().then((data) => {
     res.json({ data });
   }).catch((err) => {
     res.json({ message: err });
   });
 });
 
-app.get('./departments', (req, res) => {
-  dataservice.getAllDepartments().then((data) => {
+app.get('/departments', (req, res) => {
+  dataservice.getDepartments().then((data) => {
     res.json({ data });
   }).catch((err) => {
     res.json({ message: err });
@@ -45,4 +45,7 @@ onHttpServer = () => {
 };
 
 app.use(express.static('public'));
-app.listen(HTTP_PORT, onHttpServer());
+
+dataservice.initialize().then(() => { app.listen(HTTP_PORT, onHttpServer()) }).catch(() => {
+  console.log("err!");
+})

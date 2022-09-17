@@ -1,6 +1,6 @@
 var employees = [];
 var departments = [];
-var file = require("fs");
+var file = require('fs');
 
 
 exports.initialize = () => {
@@ -28,7 +28,7 @@ exports.initialize = () => {
 };
 
 
-exports.getAllEmployee = () => {
+exports.getAllEmployees = () => {
   return new Promise((resolve, reject) => {
     if (employees.length == 0) {
       reject("no result returned");
