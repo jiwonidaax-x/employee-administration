@@ -1,9 +1,11 @@
-var file = require("fs");
 var employees = [];
 var departments = [];
+var file = require("fs");
+
 
 exports.initialize = () => {
-  return new Promise(function(resolve, reject) {
+
+  return new Promise((resolve, reject) => {
     file.readFile('./data/employees.json', (err, data) => {
       if (err) {
         reject("unable to read file");
@@ -16,47 +18,44 @@ exports.initialize = () => {
     file.readFile('./data/departments.json', (err, data) => {
       if (err) {
         reject("unable to read file");
-      } else {
+      }
+      else {
         departments = JSON.parse(data);
       }
-    })
+    });
     resolve();
   })
 };
 
-exports.getAllEmployees = () => {
-  return new Promise(function(resolve, reject) {
+
+exports.getAllEmployee = () => {
+  return new Promise((resolve, reject) => {
     if (employees.length == 0) {
-      reject("no results returned");
-    }
-    else {
+      reject("no result returned");
+    } else {
       resolve(employees);
     }
-  })
+  });
+};
+exports.getDepartments = () => {
+  return new Promise((resolve, reject) => {
+    if (departments.length == 0) {
+      reject("no result returned");
+    } else {
+      resolve(departments);
+    }
+  });
 };
 
 exports.getManagers = () => {
-  var newArr = [];
-  return new Promise(function(resolve, reject) {
-    if (employees.length == 0) {
-      reject("no results returned");
+  var manager = employees.filter(e => e.isManager == true);
+  return new Promise((resolve, reject) => {
+    if (manager.length == 0) {
+      reject("no result returned");
+    } else {
+      resolve(manager);
     }
-    else {
-      employees.forEach(e => newArr.push((e.isManager === true)));
-      resolve(newArr);
-    }
-  })
-};
-
-exports.getDepartments = () => {
-  return new Promise(function(resolve, reject) {
-    if (departments.length == 0) {
-      reject("no results returned");
-    }
-    else {
-      resolve(departments);
-    }
-  })
+  });
 };
 
 
