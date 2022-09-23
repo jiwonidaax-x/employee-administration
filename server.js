@@ -36,6 +36,13 @@ app.get('/departments', (req, res) => {
   });
 });
 
+app.get('/employees/add',(req,res)=>{
+  res.sendFile(path.join(__dirname,'/views/addEmployee.html'));
+});
+
+app.get('/images/add',(req,res)=>{
+  res.sendFile(path.join(__dirname,'/views/addImage.html'));
+});
 app.use((req, res) => {
   res.status(404).send("Page not Found");
 });
@@ -49,3 +56,4 @@ app.use(express.static('public'));
 dataservice.initialize().then(() => { app.listen(HTTP_PORT, onHttpServer()) }).catch(() => {
   console.log("err!");
 })
+
